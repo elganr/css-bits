@@ -1,0 +1,151 @@
+
+$lines-4-5-margin-h : 1/100;
+$lines-4-5-margin-v : -6.9285714285%;
+
+// Container width
+@function width-4-5($size){
+  @return ($size * 5) * (100/100 + $lines-4-5-margin-h*4) + 1.1; //FIXME Why did I have to do 1.1 here?
+}
+// Margin top & bottom for shifted row
+@function margin-v-4-5($size){
+  @return -($size/0.866)*25/100 + (($size * 5) * (100/100 + $lines-4-5-margin-h*4) + 1)/100;
+}
+// Translate X for disposition
+@function translate-additive(){
+  @return 0;              // What is the right calculation????
+}
+@function translate-4-5(){
+  @return 50% + percentage($lines-4-5-margin-h * translate-additive());
+}
+
+// Lines settings
+@mixin lines-4-5(){
+
+  // Line break
+  li:nth-child(9n+1),
+  li:nth-child(9n+5){
+    clear: left;
+  }
+  
+  // Margins on left and right
+  li:not(:nth-child(9n+4)):not(:nth-child(9n+9)){
+    margin-right: percentage($lines-4-5-margin-h/2);
+  }  
+  li:not(:nth-child(9n+1)):not(:nth-child(9n+5)){
+    margin-left: percentage($lines-4-5-margin-h/2);
+  }
+  
+  // Shift of row
+  li:nth-child(9n+1),
+  li:nth-child(9n+2),
+  li:nth-child(9n+3),
+  li:nth-child(9n+4){  
+    -webkit-transform: translateX( translate-4-5() ) rotate(-60deg) skewY(30deg);
+    -ms-transform: translateX( translate-4-5() ) rotate(-60deg) skewY(30deg);
+    transform: translateX( translate-4-5() ) rotate(-60deg) skewY(30deg);   
+    left: percentage($lines-4-5-margin-h/2);
+  }
+
+}
+
+// Container width and row positioning
+@mixin width-n-margins-4-5($size, $left){
+  // Container width
+  width: width-4-5($size);
+  
+  // shifted row margins
+  li:nth-child(9n+5),
+  li:nth-child(9n+6),
+  li:nth-child(9n+7),
+  li:nth-child(9n+8),
+  li:nth-child(9n+9){
+    margin-top: margin-v-4-5($size);
+    
+    // If has hexagon(s) after: make it fit
+    margin-bottom: margin-v-4-5($size);
+    // Else: normal margin (avoids cut hexagons)
+    &:last-child{
+      margin-bottom: 0px;
+    }
+    
+    //left: $left;    
+  }
+}
+
+@media #{$only-phone}{
+
+  .xs-lines-4-5{
+    
+    @include lines-4-5();
+
+    &.xs-sm {
+      @include width-n-margins-4-5($hxg-sm, -1);
+    }
+    &.xs-md {
+      @include width-n-margins-4-5($hxg-md, -2);
+    }
+    &.xs-lg {
+      @include width-n-margins-4-5($hxg-lg, -3);
+    }
+    
+  }
+
+}
+@media #{$only-tablet-portrait}{
+
+  .sm-lines-4-5{
+  
+    @include lines-4-5();
+
+    &.sm-sm {
+      @include width-n-margins-4-5($hxg-sm, -1);
+    }
+    &.sm-md {
+      @include width-n-margins-4-5($hxg-md, -2);
+    }
+    &.sm-lg {
+      @include width-n-margins-4-5($hxg-lg, -3);
+    }
+    
+  }
+
+}
+@media #{$only-tablet-landscape}{
+
+  .md-lines-4-5{
+  
+    @include lines-4-5();
+
+    &.md-sm {
+      @include width-n-margins-4-5($hxg-sm, -1);
+    }
+    &.md-md {
+      @include width-n-margins-4-5($hxg-md, -2);
+    }
+    &.md-lg {
+      @include width-n-margins-4-5($hxg-lg, -3);
+    }
+    
+  }
+
+}
+@media #{$only-laptop}{
+
+  .lg-lines-4-5{
+  
+    @include lines-4-5();
+
+    &.lg-sm {
+      @include width-n-margins-4-5($hxg-sm, -1);
+    }
+    &.lg-md {
+      @include width-n-margins-4-5($hxg-md, -2);
+    }
+    &.lg-lg {
+      @include width-n-margins-4-5($hxg-lg, -3);
+    }
+    
+  }
+
+}
+

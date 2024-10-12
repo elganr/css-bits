@@ -1,0 +1,143 @@
+
+$lines-1-2-margin-h : 1/100;
+$lines-1-2-margin-v : -6.9285714285%;
+
+// Container width
+@function width-1-2($size){
+  @return ($size * 2) * (100/100 + $lines-1-2-margin-h*2) + 1;
+}
+// Margin top & bottom for shifted row
+@function margin-v-1-2($size){
+  @return -($size/0.866)*25/100 + (($size * 2) * (100/100 + $lines-1-2-margin-h*2) + 1)/100;
+}
+// Translate X for disposition
+@function translate-additive(){
+  @return 0;              // What is the right calculation????
+}
+@function translate-1-2(){
+  @return 50% + percentage($lines-1-2-margin-h * translate-additive());
+}
+
+// Lines settings
+@mixin lines-1-2(){
+
+  // Line break
+  li:nth-child(3n+1), li:nth-child(3n+2){
+    clear: left;
+  }
+  
+  // Margins on left and right
+  li:nth-child(3n+2){
+    margin-right: percentage($lines-1-2-margin-h/2);
+  }  
+  li:nth-child(3n+3){
+    margin-left: percentage($lines-1-2-margin-h/2);
+  }
+  
+  // Shift of row
+  li:nth-child(3n+1){  
+    -webkit-transform: translateX( translate-1-2() ) rotate(-60deg) skewY(30deg);
+    -ms-transform: translateX( translate-1-2() ) rotate(-60deg) skewY(30deg);
+    transform: translateX( translate-1-2() ) rotate(-60deg) skewY(30deg);   
+    left: percentage($lines-1-2-margin-h/2);
+  }
+
+}
+
+// Container width and row positioning
+@mixin width-n-margins-1-2($size, $left){
+  // Container width
+  width: width-1-2($size);
+  
+  // shifted row margins
+  li:nth-child(3n+2),
+  li:nth-child(3n+3){
+    margin-top: margin-v-1-2($size);
+    
+    // If has hexagon(s) after: make it fit
+    margin-bottom: margin-v-1-2($size);
+    // Else: normal margin (avoids cut hexagons)
+    &:last-child{
+      margin-bottom: 0px;
+    }
+    
+    //left: $left;
+  }
+}
+
+@media #{$only-phone}{
+
+  .xs-lines-1-2{
+    
+    @include lines-1-2();
+
+    &.xs-sm {
+      @include width-n-margins-1-2($hxg-sm, -1);
+    }
+    &.xs-md {
+      @include width-n-margins-1-2($hxg-md, -2);
+    }
+    &.xs-lg {
+      @include width-n-margins-1-2($hxg-lg, -3);
+    }
+    
+  }
+
+}
+@media #{$only-tablet-portrait}{
+
+  .sm-lines-1-2{
+  
+    @include lines-1-2();
+
+    &.sm-sm {
+      @include width-n-margins-1-2($hxg-sm, -1);
+    }
+    &.sm-md {
+      @include width-n-margins-1-2($hxg-md, -2);
+    }
+    &.sm-lg {
+      @include width-n-margins-1-2($hxg-lg, -3);
+    }
+    
+  }
+
+}
+@media #{$only-tablet-landscape}{
+
+  .md-lines-1-2{
+  
+    @include lines-1-2();
+
+    &.md-sm {
+      @include width-n-margins-1-2($hxg-sm, -1);
+    }
+    &.md-md {
+      @include width-n-margins-1-2($hxg-md, -2);
+    }
+    &.md-lg {
+      @include width-n-margins-1-2($hxg-lg, -3);
+    }
+    
+  }
+
+}
+@media #{$only-laptop}{
+
+  .lg-lines-1-2{
+  
+    @include lines-1-2();
+
+    &.lg-sm {
+      @include width-n-margins-1-2($hxg-sm, -1);
+    }
+    &.lg-md {
+      @include width-n-margins-1-2($hxg-md, -2);
+    }
+    &.lg-lg {
+      @include width-n-margins-1-2($hxg-lg, -3);
+    }
+    
+  }
+
+}

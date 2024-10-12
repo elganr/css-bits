@@ -1,0 +1,37 @@
+
+$p-size : 10.5pt;
+$p-line-height : 15pt;
+
+// Media queries
+$from-phone : "only screen and (min-width: 42px)";
+$from-tablet-portrait : "only screen and (min-width: 321px)";
+$from-tablet-landscape : "only screen and (min-width: 769px)";
+$from-laptop : "only screen and (min-width: 992px)";
+
+$only-phone : "only screen and (max-width: 320px)";
+$only-tablet-portrait : "only screen and (min-width: 321px) and (max-width: 768px)";
+$only-tablet-landscape : "only screen and (min-width: 769px) and (max-width: 991px)";
+$only-laptop : "only screen and (min-width: 992px)";
+
+@import "modules/all";
+
+// Default
+
+body{
+  background-color: $white;
+  text-align: center;
+}
+
+p, li, td{
+
+  @include fs-lh($p-size, $p-line-height);
+  text-align: justify;
+}
+
+ul{
+  list-style: none;
+}
+
+@import "generals/hexagons";
+
+@import "partials/persons";

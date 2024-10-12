@@ -1,0 +1,23 @@
+// Mixins
+
+// Font size and line-height
+@mixin fs-lh($fs, $lh){
+  font-size: $fs;
+  line-height: $lh;
+}
+
+// Transform: rotate, Skew Y (for hexagons)
+@mixin rotate-n-skewY($r, $s){
+  -webkit-transform: rotate($r) skewY($s);
+  -moz-transform: rotate($r) skewY($s);
+  -ms-transform: rotate($r) skewY($s);
+  -o-transform: rotate($r) skewY($s);
+  transform: rotate($r) skewY($s);
+}
+@mixin skewY-n-rotate($s, $r){
+  -webkit-transform: skewY($s) rotate($r);
+  -moz-transform: skewY($s) rotate($r);
+  -ms-transform: skewY($s) rotate($r);
+  -o-transform: skewY($s) rotate($r);
+  transform: skewY($s) rotate($r);
+}

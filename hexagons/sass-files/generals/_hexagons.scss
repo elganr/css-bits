@@ -1,0 +1,197 @@
+
+// Hexagons
+
+$hxg-sm : 92px;
+$hxg-md : 144px;
+$hxg-lg : 222px;
+
+.hexagons{
+
+  padding-left: 0px;
+
+  overflow: hidden;
+  margin: 0 auto;
+  
+  // According to resolution, hexagon size may have to change.
+  
+  @mixin w-pb($size){
+    width: $size;
+    padding-bottom: $size / 0.866;
+  }
+  
+  @mixin container-pb($size){
+    &:not(.single){
+      //padding-bottom: $size * 0.866;      // Not the most accurate: should be equal to triangular end height
+    }
+  }
+  
+  @media #{$from-phone}{
+
+    &.xs-sm{
+    
+      @include container-pb($hxg-sm);
+      
+      & > .hexagon{
+        @include w-pb($hxg-sm); 
+      } 
+    }
+    &.xs-md{
+    
+      @include container-pb($hxg-md);
+      
+      & > .hexagon{
+        @include w-pb($hxg-md);
+      } 
+    }
+    &.xs-lg{
+    
+      @include container-pb($hxg-lg);
+      
+      & > .hexagon{
+        @include w-pb($hxg-lg);
+      } 
+    }
+  
+  }
+  @media #{$from-tablet-portrait}{
+      
+    &.sm-sm{
+    
+      @include container-pb($hxg-sm);
+      
+      & > .hexagon{
+        @include w-pb($hxg-sm); 
+      } 
+    }
+    &.sm-md{
+    
+      @include container-pb($hxg-md);
+      
+      & > .hexagon{
+        @include w-pb($hxg-md);
+      } 
+    }
+    &.sm-lg{
+    
+      @include container-pb($hxg-lg);
+      
+      & > .hexagon{
+        @include w-pb($hxg-lg);
+      } 
+    }
+  
+  }
+  @media #{$from-tablet-landscape}{
+      
+    &.md-sm{
+    
+      @include container-pb($hxg-sm);
+      
+      & > .hexagon{
+        @include w-pb($hxg-sm); 
+      } 
+    }
+    &.md-md{
+    
+      @include container-pb($hxg-md);
+      
+      & > .hexagon{
+        @include w-pb($hxg-md);
+      } 
+    }
+    &.md-lg{
+    
+      @include container-pb($hxg-lg);
+      
+      & > .hexagon{
+        @include w-pb($hxg-lg);
+      } 
+    }
+  
+  }
+  @media #{$from-laptop}{
+      
+    &.lg-sm{
+    
+      @include container-pb($hxg-sm);
+      
+      & > .hexagon{
+        @include w-pb($hxg-sm); 
+      } 
+    }
+    &.lg-md{
+    
+      @include container-pb($hxg-md);
+      
+      & > .hexagon{
+        @include w-pb($hxg-md);
+      } 
+    }
+    &.lg-lg{
+    
+      @include container-pb($hxg-lg);
+      
+      & > .hexagon{
+        @include w-pb($hxg-lg);
+      } 
+    }
+  
+  }
+
+  .hexagon{
+  
+    position: relative;
+    list-style-type: none;
+    float: left;
+    overflow: hidden;
+    visibility: hidden;
+    
+    @include rotate-n-skewY(-60deg, 30deg);
+  
+    *{
+      position: absolute;
+      visibility: visible;
+    }
+  
+    & > .content {
+    
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      overflow: hidden;
+      
+      @include skewY-n-rotate(-30deg, 60deg);
+      
+      -webkit-backface-visibility: hidden;
+    
+    }
+    
+    &.empty{
+      *{
+        visibility: hidden;
+      }
+    }
+    
+    /* Background */
+    
+    img {
+      left: -100%;
+      right: -100%;
+      width: auto;
+      height: 100%;
+      margin: 0 auto;
+    }
+  
+  }
+  
+  .content{
+  
+    h1, h2, h3, h4, h5, h6, p{
+      width: 90%; 
+    }
+  
+  }  
+
+}
+
+@import 'hexagons/sets.scss';

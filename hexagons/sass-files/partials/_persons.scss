@@ -1,0 +1,233 @@
+
+
+$person-sm-h-size : 7pt;
+$person-sm-h-line-height : 7pt;
+$person-md-h-size : 8pt;
+$person-md-h-line-height : 8pt;
+$person-lg-h-size : 11pt;
+$person-lg-h-line-height : 11pt;
+
+$person-sm-namePlate-padding-v : 2px;
+$person-md-namePlate-padding-v : 4px;
+$person-lg-namePlate-padding-v : 8px;
+
+$person-sm-namePlate-padding-fit : 12px;
+$person-md-namePlate-padding-fit : 24px;
+$person-lg-namePlate-padding-fit : 36px;
+
+/* Persons */
+.person{
+
+  .content{
+  
+    img{
+      opacity: 0.5;
+    }
+  
+    .namePlate{
+    
+      text-align: center;
+    
+      width: 100%;
+      height: 25%;
+      
+      .firstname, .surname{
+        position: relative;
+        display: block;
+        clear: both;
+      }
+      
+      .firstname{
+        text-transform: capitalize;
+      }
+      .surname{
+        text-transform: uppercase;
+      }
+      
+      background: rgba($black, 0.5);
+      color: $white;
+      
+      bottom: 0;
+      margin-bottom: 0px;
+      
+      -webkit-transition: height 0.3s ease;
+      transition: height 0.3s ease;
+      
+    }
+    
+    &:not(.active):hover{
+    
+      img{
+        opacity: 1;
+      }
+    
+      .namePlate{
+        background: rgba($white, 0.5);
+        color: $black;
+        
+        height: 40%;
+      }
+      
+      // White layer low opacity
+      
+    }
+  
+  }
+ 
+} 
+
+@mixin person-nameplate($fs, $lh, $pv, $pf){
+
+  .namePlate{
+    
+    @include fs-lh($fs, $lh);
+    
+    padding: $pv $pf ($pv + $pf) $pf;
+  }
+
+}
+
+.xs-sm .person{
+  @media #{$from-phone} {
+    .content{
+      @include person-nameplate(
+        $person-sm-h-size, 
+        $person-sm-h-line-height, 
+        $person-sm-namePlate-padding-v, 
+        $person-sm-namePlate-padding-fit
+      );
+    }
+  }
+}
+.xs-md .person{
+  @media #{$from-phone} {
+    .content{
+      @include person-nameplate(
+        $person-md-h-size, 
+        $person-md-h-line-height, 
+        $person-md-namePlate-padding-v, 
+        $person-md-namePlate-padding-fit
+      );
+    }
+  }
+}
+.xs-lg .person{
+  @media #{$from-phone} {
+    .content{
+      @include person-nameplate(
+        $person-lg-h-size, 
+        $person-lg-h-line-height, 
+        $person-lg-namePlate-padding-v, 
+        $person-lg-namePlate-padding-fit
+      );
+    }
+  }
+}
+.sm-sm .person{
+  @media #{$from-tablet-portrait} {
+    .content{
+      @include person-nameplate(
+        $person-sm-h-size, 
+        $person-sm-h-line-height, 
+        $person-sm-namePlate-padding-v, 
+        $person-sm-namePlate-padding-fit
+      );
+    }
+  }
+}
+.sm-md .person{
+  @media #{$from-tablet-portrait} {
+    .content{
+      @include person-nameplate(
+        $person-md-h-size, 
+        $person-md-h-line-height, 
+        $person-md-namePlate-padding-v, 
+        $person-md-namePlate-padding-fit
+      );
+    }
+  }
+}
+.sm-lg .person{
+  @media #{$from-tablet-portrait} {
+    .content{
+      @include person-nameplate(
+        $person-lg-h-size, 
+        $person-lg-h-line-height, 
+        $person-lg-namePlate-padding-v, 
+        $person-lg-namePlate-padding-fit
+      );
+    }
+  }
+}
+.md-sm .person{
+  @media #{$from-tablet-landscape} {
+    .content{
+      @include person-nameplate(
+        $person-sm-h-size, 
+        $person-sm-h-line-height, 
+        $person-sm-namePlate-padding-v, 
+        $person-sm-namePlate-padding-fit
+      );
+    }
+  }
+}
+.md-md .person{
+  @media #{$from-tablet-landscape} {
+    .content{
+      @include person-nameplate(
+        $person-md-h-size, 
+        $person-md-h-line-height, 
+        $person-md-namePlate-padding-v, 
+        $person-md-namePlate-padding-fit
+      );
+    }
+  }
+}
+.md-lg .person{
+  @media #{$from-tablet-landscape} {
+    .content{
+      @include person-nameplate(
+        $person-lg-h-size, 
+        $person-lg-h-line-height, 
+        $person-lg-namePlate-padding-v, 
+        $person-lg-namePlate-padding-fit
+      );
+    }
+  }
+}
+.lg-sm .person{
+  @media #{$from-laptop} {
+    .content{
+      @include person-nameplate(
+        $person-sm-h-size, 
+        $person-sm-h-line-height, 
+        $person-sm-namePlate-padding-v, 
+        $person-sm-namePlate-padding-fit
+      );
+    }
+  }
+}
+.lg-md .person{
+  @media #{$from-laptop} {
+    .content{
+      @include person-nameplate(
+        $person-md-h-size, 
+        $person-md-h-line-height, 
+        $person-md-namePlate-padding-v, 
+        $person-md-namePlate-padding-fit
+      );
+    }
+  }
+}
+.lg-lg .person{
+  @media #{$from-laptop} {
+    .content{
+      @include person-nameplate(
+        $person-lg-h-size, 
+        $person-lg-h-line-height, 
+        $person-lg-namePlate-padding-v, 
+        $person-lg-namePlate-padding-fit
+      );
+    }
+  }
+}
